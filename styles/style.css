@@ -128,6 +128,7 @@ body {
   line-height: 18px;
   width: 306px;
   padding-right: 10px;
+  letter-spacing: 0.001em;
 }
 
 .link-wrapper {
@@ -483,6 +484,10 @@ body {
   cursor: pointer;
 }
 
+.wellcome-logout-button:disabled {
+  opacity: 0.2;
+}
+
 .logout-link {
   display: inline-block;
   width: 16px;
@@ -617,7 +622,7 @@ body {
   display: block;
   width: 20px;
   height: 20px;
-   border: 2px solid #3d546f;
+  border: 2px solid #3d546f;
   border-radius: 2px;
   position: absolute;
   top: 0;
@@ -758,6 +763,7 @@ body {
   outline-offset: 2px;
 }
 
+
 .auth-close-button:hover,
 .wellcome-close-button:hover {
   opacity: 0.7;
@@ -768,6 +774,11 @@ body {
 .wellcome-close-button:active {
   opacity: 0.4;
   outline: none;
+}
+
+.auth-close-button:disabled,
+.wellcome-close-button:disabled {
+  opacity: 0.2;
 }
 
 .phonenumber-link::before {
@@ -861,7 +872,7 @@ body {
   display: none;
 }
 
-/*Для количества товаров в избранном и в корзине. Вешать на order-link-quantity*/
+/*ДЛЯ ОТОБРАЖЕНИЯ КОЛИЧЕСТВА ТОВАРОВ В ИЗБРАННОМ И В КОРЗИНЕ: СТАВИТЬ КЛАСС НА order-link-quantity*/
 .order-link-quantity-open {
   display: inline-block;
 }
@@ -1460,6 +1471,10 @@ input[type="number"] {
   outline: none;
 }
 
+.filter-form-button:disabled {
+  opacity: 0.2;
+}
+
 .filter-input[type="checkbox"]:checked ~ .filter-label::after {
   content: "";
   display: block;
@@ -1484,7 +1499,22 @@ input[type="number"] {
 .filter-input[type="checkbox"]:hover ~ .filter-label::after,
 .filter-radio-input[type="radio"]:hover ~ .filter-radio-label::before,
 .filter-radio-input[type="radio"]:hover ~ .filter-radio-label::after {
-  opacity: 0.6;
+  opacity: 0.8;
+  outline: none;
+}
+
+.auth-checkbox[type="checkbox"]:active ~ .auth-checkbox-row::before,
+.filter-input[type="checkbox"]:active ~ .filter-label::before,
+.filter-radio-input[type="radio"]:active ~ .filter-radio-label::before {
+  border: 2px solid rgba(50, 66, 92, 0.8);
+  outline: none;
+}
+
+.auth-checkbox[type="checkbox"]:active ~ .auth-checkbox-row::after,
+.filter-input[type="checkbox"]:active ~ .filter-label::after,
+.filter-radio-input[type="radio"]:active ~ .filter-radio-label::before,
+.filter-radio-input[type="radio"]:active ~ .filter-radio-label::after {
+  opacity: 0.8;
   outline: none;
 }
 
@@ -1596,7 +1626,8 @@ input[type="number"] {
   font-size: 16px;
   font-family: "PT Sans", sans-serif;
   line-height: 24px;
-  appearance: none;
+  -webkit-appearance: none;
+          appearance: none;
   width: 280px;
   padding: 7px 32px 7px 16px;
   cursor: pointer;
@@ -1634,6 +1665,18 @@ input[type="number"] {
 
 .select-control:focus + .select-arrow {
   fill: #63a63e;
+}
+
+.select-control:disabled {
+  background-color: rgb(241, 245, 247, 0.5);
+  border: 1px solid rgb(197, 197, 197, 0.5);
+  color: #808080;
+  cursor: inherit;
+}
+
+.select-control:disabled + .select-arrow {
+  fill: #808080;
+  cursor: inherit;
 }
 
 .catalog-list {
@@ -1804,7 +1847,7 @@ input[type="number"] {
   display: none;
 }
 
-/*Класс для метки new секция товары и и сервис/goods-list/*/
+/*ДЛЯ МЕТКИ NEW в секции товары и сервис: СТАВИТЬ НА goods-list-item*/
 .goods-new {
   position: relative;
 }
@@ -1821,7 +1864,7 @@ input[type="number"] {
   top: 1px;
 }
 
-/*Класс для метки new на карточках с перфораторами*/
+/*Класс для метки new на карточках с перфораторами:ставить на catalog-item*/
 .catalog-item-new {
   position: relative;
 }
@@ -1838,11 +1881,6 @@ input[type="number"] {
   top: 1px;
 }
 
-.catalog-item {
-  position: relative;
-  width: 265px;
-}
-
 .catalog-item::after {
   display: none;
   content: "";
@@ -1855,9 +1893,12 @@ input[type="number"] {
   z-index: 2;
 }
 
-.catalog-item:focus-visible {
-  outline: 2px solid #000000;
-  outline-offset: -1px;
+.catalog-item-link:focus,
+.catalog-item-link:focus-visible,
+.catalog-item:focus-visible,
+.catalog-item:focus {
+  box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+  outline: none;
 }
 
 .catalog-item-link:hover {
@@ -1869,6 +1910,11 @@ input[type="number"] {
   outline: none;
 }
 
+.catalog-item:focus {
+  box-shadow: none;
+}
+
+.catalog-item:focus::after,
 .catalog-item:hover::after {
   display: block;
   outline: none;
@@ -1877,13 +1923,18 @@ input[type="number"] {
 .catalog-item {
   position: relative;
   outline: none;
+  width: 265px;
 }
 
+.catalog-item:focus .pay-link-wrapper,
 .catalog-item:hover .pay-link-wrapper {
   display: block;
   outline: none;
 }
 
+.catalog-item:focus .catalog-item-caption,
+.catalog-item:focus .old-price,
+.catalog-item:focus .discount-price,
 .catalog-item:hover .catalog-item-caption,
 .catalog-item:hover .old-price,
 .catalog-item:hover .discount-price {
@@ -2215,13 +2266,16 @@ input[type="number"] {
 }
 
 .footer-item-link:focus-visible {
-  outline: 2px solid #000000;
+  outline: 1px solid #000000;
+  outline-offset: 1px;
 }
 
 .footer-item-link:hover {
   background-color: #293449;
   outline: none;
+  border: none;
 }
+
 
 .pinterest-link::before {
   content: "";
@@ -2277,6 +2331,7 @@ input[type="number"] {
 .footer-address {
   color: #f3f7f9;
   font-style: normal;
+  letter-spacing: 0.01em;
 }
 
 .page-footer-wrapper {
@@ -2367,14 +2422,25 @@ input[type="number"] {
   height: 40px;
   border: none;
   background-color: #63a63e;
-  background-image: url("../images/header-cart-icon.svg");
-  background-repeat: no-repeat;
-  background-position: center;
   border-radius: 0 2px 2px 0;
   padding: 0;
   margin: 0;
   cursor: pointer;
+  position: relative;
 }
+
+.subscribe-button::after {
+  content: "";
+  width: 18px;
+  height: 18px;
+  display: block;
+  background-image: url("../images/header-cart-icon.svg");
+  background-repeat: no-repeat;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
 
 .subscribe-input::placeholder {
   color: #bdbdbd;
@@ -2384,16 +2450,28 @@ input[type="number"] {
   line-height: 18px;
 }
 
-.subscribe-input:hover,
-.subscribe-input:focus-visible {
+.subscribe-input:hover {
   border: 1px solid #5fbb2d;
   outline: none;
+}
+
+.subscribe-input:focus-visible {
+  outline: 2px solid #ffbf47;
+  outline-offset: -2px;
 }
 
 .subscribe-input:not(:placeholder-shown) {
   border-color: #518534;
   outline: none;
 }
+
+.subscribe-input:disabled {
+  background-color: rgb(241, 245, 247, 0.5);
+  border: 1px solid rgb(197, 197, 197, 0.5);
+  color: #808080;
+  cursor: inherit;
+}
+
 
 .subscribe-button:focus-visible,
 .subscribe-button:hover {
@@ -2403,6 +2481,16 @@ input[type="number"] {
 
 .subscribe-button:active {
   background-color: #518534;
+}
+
+.subscribe-button:disabled {
+  background-color: rgb(241, 245, 247, 0.5);
+  color: #808080;
+  cursor: inherit;
+}
+
+.subscribe-button:disabled::after {
+  opacity: 0.2;
 }
 
 .copyright-box {
@@ -2430,6 +2518,7 @@ input[type="number"] {
   line-height: 18px;
   margin-right: auto;
   padding-top: 4px;
+  text-decoration: none;
 }
 
 .html-academy {
@@ -2467,7 +2556,7 @@ input[type="number"] {
   line-height: 18px;
 }
 
-/*ошибка для полей*/
+/*ОШИБКА ДЛЯ ПОЛЕЙ, СТАВИТЬ НА ИНПУТ*/
 .error,
 .error:placeholder-shown {
   border: none;
@@ -2475,6 +2564,7 @@ input[type="number"] {
   color: #293449;
 }
 
+/*ТЕКСТ ОШИБКИ ПОЛЕЙ ВВОДА*/
 .error-text {
   font-size: 14px;
   color: #ba2732;
@@ -2503,11 +2593,12 @@ input[type="number"] {
   display: block;
 }
 
+/*DISABLED ДЛЯ КНОПОК И ССЫЛОК, У КОТОРЫХ DISABLED В МАКЕТЕ НЕ ОПРЕДЕЛЕН*/
 .link:disabled,
 .link:disabled:hover,
 .link:disabled:active,
 .link-disabled,
 .link-disabled:hover,
 .link-disabled:active {
-  opacity: 0.1;
+  opacity: 0.2;
 }
